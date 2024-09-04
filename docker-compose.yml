@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: '3'
 services:
   mongodb:
@@ -22,6 +23,27 @@ services:
     environment:
       MONGO_URL: mongodb://root:example@mongodb:27017/devopsdb?authSource=admin
       NODE_ENV: development
+=======
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"  # Map port 3000 of the container to port 3000 on the host
+    environment:
+      MONGO_URI: mongodb://mongo:27017/devops-practical  # MongoDB connection string
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:6.0  # Use the latest MongoDB image
+    container_name: mongodb
+    ports:
+      - "27017:27017"  # Map MongoDB port to the host
+    volumes:
+      - mongo-data:/data/db  # Persist MongoDB data in a named volume
+>>>>>>> 171148b8cde8d42a74612ad3eff3bb6931746baa
 
 volumes:
   mongo-data:
